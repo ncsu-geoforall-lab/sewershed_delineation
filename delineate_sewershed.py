@@ -23,6 +23,11 @@
 # %end
 # %option G_OPT_V_OUTPUT
 # %end
+# %option
+# % key: sewer_buffer
+# % type: double
+# % description: Buffer for selection around the sewer lines
+# %end
 # %option G_OPT_DB_COLUMN
 # % key: sewer_select_column
 # % description: Attribute column to select sewer features by
@@ -152,6 +157,8 @@ def main():
         aggregate_column=aggregate_columns,
         result_column=result_columns,
     )
+    # string concat county names during dissolve
+    # v.db.select NC_blocks2020 columns="sum(P0010001)" where="County_Nam='Wake County'"
     gs.vector_history(output)
 
 
