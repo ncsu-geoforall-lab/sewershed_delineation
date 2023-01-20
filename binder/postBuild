@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# exit on error
+set -e
+
+# use code dir for code
+mkdir code
+cd code
+
+# get the source code
+git clone --depth 1 --branch v_dissolve-attr-stats https://github.com/wenzeslaus/grass.git
+
+# compile
+cd grass
+
+# compile
+./configure \
+    --enable-largefile=yes \
+    --with-nls \
+    --with-cxx \
+    --with-readline \
+    --with-bzlib \
+    --with-pthread \
+    --with-proj-share=/usr/share/proj \
+    --with-geos=/usr/bin/geos-config \
+    --with-cairo \
+    --with-opengl-libs=/usr/include/GL \
+    --with-freetype=yes --with-freetype-includes="/usr/include/freetype2/" \
+    --with-sqlite=yes
+make
+
+# put command on path
+# ensure the user specific bin dir exists (already on path)
+mkdir -p $HOME/.local/bin/
+# create link to build
+ln -s $HOME/bin.*/grass* $HOME/.local/bin/grass
