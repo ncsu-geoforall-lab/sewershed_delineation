@@ -23,6 +23,7 @@
     "opengl",
     "freetype",
     "GDAL",
+    "mkdir",
     "Connor",
     "Pipfile",
     "Popen",
