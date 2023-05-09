@@ -25,6 +25,7 @@
     "GDAL",
     "mkdir",
     "Connor",
+    "PDAL",
     "Pipfile",
     "Popen",
     "Posix",
