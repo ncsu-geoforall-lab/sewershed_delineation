@@ -30,6 +30,7 @@
     "Popen",
     "Posix",
     "Pylint",
+    "pyright",
     "Scrapy",
     "Spyder",
     "TYPECHECK",
