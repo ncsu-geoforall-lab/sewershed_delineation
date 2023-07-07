@@ -56,6 +56,7 @@ def aggregate_attributes_sql(
     result_columns,
 ):
     """Aggregate values in selected columns grouped by column using SQL backend"""
+    # pylint: disable=too-many-arguments,too-many-locals,too-many-branches
     if len(columns_to_aggregate) != len(result_columns):
         raise ValueError(
             "Number of columns_to_aggregate and result_columns must be the same"
@@ -146,6 +147,7 @@ def update_columns(output_name, output_layer, updates, add_columns):
 def statistics_to_one_vector(
     input_vector, dissolve_column, columns_to_aggregate, result_columns, output
 ):
+    """Update output GRASS vector map with aggregate attribute values of a input map"""
     updates, add_columns = aggregate_attributes_sql(
         input_name=input_vector,
         input_layer=1,
