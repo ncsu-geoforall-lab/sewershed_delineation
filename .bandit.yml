@@ -83,6 +83,9 @@ linux_commands_wildcard_injection:
     - subprocess.run
 skips:
   - B404
+  # Users of this code can execute any SQL statements,
+  # so no neutralization is performed.
+  - B608
 ssl_with_bad_defaults:
   bad_protocol_versions:
     - PROTOCOL_SSLv2

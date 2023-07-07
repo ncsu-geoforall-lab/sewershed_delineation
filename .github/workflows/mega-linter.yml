@@ -9,6 +9,8 @@ on:
   pull_request:
     branches: [master, main]
 
+permissions: read-all
+
 env: # Comment env block if you do not want to apply fixes
   # Apply linter fixes configuration
   APPLY_FIXES: none # When active, APPLY_FIXES must also be defined as environment variable (in github/workflows/mega-linter.yml or other CI tool)
@@ -23,6 +25,7 @@ jobs:
   build:
     name: MegaLinter
     runs-on: ubuntu-latest
+    permissions: read-all
     steps:
       # Git Checkout
       - name: Checkout Code
@@ -36,7 +39,7 @@ jobs:
         id: ml
         # You can override MegaLinter flavor used to have faster performances
         # More info at https://megalinter.github.io/flavors/
-        uses: megalinter/megalinter/flavors/python@v5
+        uses: megalinter/megalinter/flavors/python@v7
         env:
           # All available variables are described in documentation
           # https://megalinter.github.io/configuration/
