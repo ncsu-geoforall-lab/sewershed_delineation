@@ -1,9 +1,3 @@
-[tool.bandit]
-
-# Users of this code can execute any SQL statements,
-# so no neutralization is performed.
-skips = ["B608"]
-
 [tool.pyright]
 
 reportMissingImports = false
