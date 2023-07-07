@@ -29,12 +29,10 @@ def updates_to_sql(table, updates):
     sql = ["BEGIN TRANSACTION"]
     for update in updates:
         quote = quote_from_type(update.get("type", None))
-        # Caller of this function can execute any SQL statements,
-        # so no neutralization is performed.
         sql.append(
             f"UPDATE {table} SET {update['column']} = {quote}{update['value']}{quote} "
             f"WHERE {update['where']};"
-        )  # nosec hardcoded_sql_expressions
+        )
     sql.append("END TRANSACTION")
     return "\n".join(sql)
 
