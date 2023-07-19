@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# exit on error
+set -e
+
+# use code dir for code
+cd $HOME
+
+# get the source code
+git clone --depth 1 --branch main https://github.com/OSGeo/grass.git
+
+# compile
+cd grass
+./configure \
+    --enable-largefile=yes \
+    --with-nls \
+    --with-cxx \
+    --with-readline \
+    --with-bzlib \
+    --with-proj-share=/usr/share/proj \
+    --with-geos=/usr/bin/geos-config \
+    --with-cairo \
+    --with-opengl-libs=/usr/include/GL \
+    --with-freetype=yes --with-freetype-includes="/usr/include/freetype2/" \
+    --with-sqlite=yes \
+    --with-pdal=no \
+    --with-openmp
+make -j8
+
+# put command on path
+# ensure the user specific bin dir exists (already on path)
+mkdir -p $HOME/.local/bin/
+# create link to build
+ln -s $HOME/grass/bin.*/grass* $HOME/.local/bin/grass
+
+$HOME/.local/bin/grass --tmp-location XY --exec g.extension r.futures
+$HOME/.local/bin/grass --tmp-location XY --exec g.extension r.sample.category
+$HOME/.local/bin/grass --tmp-location XY --exec g.extension r.mapcalc.tiled
+
+cd ..
+
+# download a sample dataset
+#mkdir -p data/grassdata \
+#   && wget https://zenodo.org/record/6577922/files/FUTURES_SE_USA.zip \
+#   && unzip -qq FUTURES_SE_USA.zip \
+#   && mv FUTURES_SE_USA data/grassdata \
+#   && rm FUTURES_SE_USA.zip
+
+mkdir -p data/grassdata
+wget https://zenodo.org/record/6577903/files/population_SE_counties_2001-2100_SSP2.zip \
+   && mv population_SE_counties_2001-2100_SSP2.zip data/ \
+   && unzip -qq data/population_SE_counties_2001-2100_SSP2.zip -d data \
+   && rm data/population_SE_counties_2001-2100_SSP2.zip
