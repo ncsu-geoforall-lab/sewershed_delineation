@@ -105,6 +105,7 @@
     "pypa",
     "pypackages",
     "pytest",
+    "rast",
     "regexes",
     "rgxs",
     "rmarea",
