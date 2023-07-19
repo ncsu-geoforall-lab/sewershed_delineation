@@ -33,21 +33,6 @@ mkdir -p $HOME/.local/bin/
 # create link to build
 ln -s $HOME/grass/bin.*/grass* $HOME/.local/bin/grass
 
-$HOME/.local/bin/grass --tmp-location XY --exec g.extension r.futures
-$HOME/.local/bin/grass --tmp-location XY --exec g.extension r.sample.category
-$HOME/.local/bin/grass --tmp-location XY --exec g.extension r.mapcalc.tiled
+$HOME/.local/bin/grass --tmp-location XY --exec g.extension v.rast.move
 
 cd ..
-
-# download a sample dataset
-#mkdir -p data/grassdata \
-#   && wget https://zenodo.org/record/6577922/files/FUTURES_SE_USA.zip \
-#   && unzip -qq FUTURES_SE_USA.zip \
-#   && mv FUTURES_SE_USA data/grassdata \
-#   && rm FUTURES_SE_USA.zip
-
-mkdir -p data/grassdata
-wget https://zenodo.org/record/6577903/files/population_SE_counties_2001-2100_SSP2.zip \
-   && mv population_SE_counties_2001-2100_SSP2.zip data/ \
-   && unzip -qq data/population_SE_counties_2001-2100_SSP2.zip -d data \
-   && rm data/population_SE_counties_2001-2100_SSP2.zip
