@@ -17,6 +17,7 @@
   "words": [
     "largefile",
     "readline",
+    "bgcolor",
     "bzlib",
     "pthread",
     "geos",
@@ -77,6 +78,7 @@
     "inlinevar",
     "ipynb",
     "ipython",
+    "isize",
     "isort",
     "ixin",
     "kernelspec",
@@ -140,8 +142,12 @@
     "spyproject",
     "startfile",
     "stefanzweifel",
+    "TruffleHog",
     "vect",
     "venv",
-    "webassets"
+    "webassets",
+    "WWTP",
+    "xref",
+    "yref"
   ]
 }
