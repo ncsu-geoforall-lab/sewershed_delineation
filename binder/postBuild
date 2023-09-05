@@ -8,7 +8,7 @@ mkdir code
 cd code
 
 # get the source code
-git clone --depth 1 --branch v_dissolve-attr-stats https://github.com/wenzeslaus/grass.git
+git clone --depth 1 --branch main https://github.com/OSGeo/grass.git
 
 # compile
 cd grass
